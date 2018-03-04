@@ -114,4 +114,15 @@ Here's a [link to my video result](./test_videos_output/outvid4.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+Difficulties faced during implementation : 
+1- Identifying lane lines using gradient thresholding was difficult , thus , was not used.
+2- Badly computed frames resulted in anomalous road curvatures . This was solved by a sanity check previously discussed. 
+
+Where the pipeline might fail : 
+1- using  LAB colorspace is not the best option for significant variations in lighting . The project video shown here did not demonstrate much variation in lighting so the algorithm was successful, yet, It does not works as well in worse cases.
+
+2- The pipeline does not work well for roads that are too curved . This can be addressed by improving the window search algorithm in the pipeline.
+
+3- During rain , roads become reflective and this will sabotage the pipeline's ability to detect the lanes. Snow will also cause it to fail due to significant change in coloring.
+
+
