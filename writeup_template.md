@@ -21,11 +21,11 @@ The goals / steps of this project are the following:
 
 [image1]: ./reference_images/original.png "Original"
 [image8]: ./reference_images/undistorted.png "Undistorted"
-[image2]: ./reference_imges/undistorted_lanes.png "Road Undistorted"
+[image2]: ./reference_images/undistorted_lanes.png "Road Undistorted"
 [image3]: ./examples/binary_combo_example.jpg "Binary Example"
 [image4]: ./reference_images/warped_lanes.png "Warp Example"
-[image5]: ./reference_images/lane_highlight.png "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image5]: ./reference_images/plotted_lines.png "Fit Visual"
+[image6]: ./reference_images/lane_highlight.png "Output"
 [video1]: ./test_videos_output/outvid.mp4 "Video"
 [video2]: ./test_videos_output/outvid4.mp4 "Video"
 
@@ -45,7 +45,7 @@ You're reading it!
 
 #### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
-The code for this step is contained in the first code cell of the IPython notebook located in "./examples/example.ipynb" (or in lines # through # of the file called `some_file.py`).  
+The code for this step is contained in the first code cell of the IPython notebook located in "image_pipeline.ipynb"
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
@@ -63,53 +63,40 @@ To demonstrate this step, I will describe how I apply the distortion correction 
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+I used only color thresholding to generate a binary image (thresholding steps in 4th code cell in "image_pipeline.ipynb").I used the LAB colorspace to easily detected the yellow colored lanes .I also attempted generating a binary image using gradient thresholding but found it to bee too noisy and decided to not use it.  Here's an example of my output for this step. 
 
 ![alt text][image3]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+The code for my perspective transform is also located in the "image_pipeline.ipynb" file in the fourth code cell, The algorithm defines two sets of points: destination and source points , which are then used to calculate the perspective transform matrix that will be used to rectify road images.  I chose to hardcode the source and destination points in the following manner:
 
 ```python
-src = np.float32(
-    [[(img_size[0] / 2) - 55, img_size[1] / 2 + 100],
-    [((img_size[0] / 6) - 10), img_size[1]],
-    [(img_size[0] * 5 / 6) + 60, img_size[1]],
-    [(img_size[0] / 2 + 55), img_size[1] / 2 + 100]])
-dst = np.float32(
-    [[(img_size[0] / 4), 0],
-    [(img_size[0] / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), 0]])
+image = cv2.copyMakeBorder(image,0,0,320,320,cv2.BORDER_CONSTANT,value=(0,0,0))
+src = np.float32([[0,720],[863,450],[1057,450],[1920,720]])
+dst = np.float32([[0,720],[0,0],[1920,0],[1920,720]])
 ```
+I also padded the image from the right and the left because the 'cv2.getPerspectiveTransform(src, dst)' method takes only 4 points for both the destination and source , and I needed the source points to cover a large area of the road. 
 
-This resulted in the following source and destination points:
-
-| Source        | Destination   | 
-|:-------------:|:-------------:| 
-| 585, 460      | 320, 0        | 
-| 203, 720      | 320, 720      |
-| 1127, 720     | 960, 720      |
-| 695, 460      | 960, 0        |
-
-I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
+I verified that my perspective transform was working as expected by testing the points on the straight lane images and used matplotlib cursor coordinates tool to verify that the warped lane lines appear parallel .
 
 ![alt text][image4]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+I used search windows to identify points along both left and right lane lines. and used the found points to generate a second order polynomial to represent the curvature of the lane lines. the plotted polynomial is shown in the "image_pipeline.ipynb" code cell number 5.
 
 ![alt text][image5]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+I did this in the 7th code cell in "image_pipeline.ipynb" . I calculated the radius of curvature for both left and right lanes and defined the curvature of the lane as the average of both left and rigt line curvatures.
+I also used sanity check by verifying that both curvatures are approximately parallel.
+
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented the steps for highlighting the identified lane in the 7th code cell in "image_pipeline.ipynb"
 
 ![alt text][image6]
 
@@ -119,7 +106,7 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./test_videos_output/outvid4.mp4)
 
 ---
 
