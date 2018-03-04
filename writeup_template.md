@@ -21,7 +21,7 @@ The goals / steps of this project are the following:
 
 [image1]: ./reference_images/original.png "Original"
 [image8]: ./reference_images/undistorted.png "Undistorted"
-[image2]: ./reference_imges/undistorted_lanes.png "Road Undistorted"
+[image2]: ./reference_images/undistorted_lanes.png "Road Undistorted"
 [image3]: ./examples/binary_combo_example.jpg "Binary Example"
 [image4]: ./reference_images/warped_lanes.png "Warp Example"
 [image5]: ./reference_images/plotted_lines.png "Fit Visual"
