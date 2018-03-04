@@ -22,8 +22,8 @@ The goals / steps of this project are the following:
 [image1]: ./reference_images/original.png "Original"
 [image8]: ./reference_images/undistorted.png "Undistorted"
 [image2]: ./reference_images/undistorted_lanes.png "Road Undistorted"
-[image3]: ./reference_images/binary_threshold.png "Binary Example"
-[image33]: ./reference_images/gradient_threshold.png "Binary Example"
+[image3]: ./reference_images/binary_threshold.png "color threshold"
+[image33]: ./reference_images/gradient_threshold.png "gradient threshold"
 [image4]: ./reference_images/warped_lanes.png "Warp Example"
 [image5]: ./reference_images/plotted_lines.png "Fit Visual"
 [image6]: ./reference_images/lane_highlight.png "Output"
@@ -67,6 +67,7 @@ To demonstrate this step, I will describe how I apply the distortion correction 
 I used only color thresholding to generate a binary image (thresholding steps in 4th code cell in "image_pipeline.ipynb").I used the LAB colorspace to easily detected the yellow colored lanes .I also attempted generating a binary image using gradient thresholding but found it to bee too noisy and decided to not use it.  Here's an example of my output for this step. 
 
 ![alt text][image3]
+![alt text][image33]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
