@@ -130,7 +130,8 @@ Here's a [link to my video result](./test_videos_output/outvid4.mp4)
 
 Difficulties faced during implementation : 
 1- Identifying lane lines using gradient thresholding was difficult , thus , was not used.
-2- Badly computed frames resulted in anomalous road curvatures . This was solved by a sanity check previously discussed. 
+
+2- Badly computed frames resulted in anomalous road curvatures . This was solved by a sanity check as previously discussed. 
 
 Where the pipeline might fail : 
 1- using  LAB colorspace is not the best option for significant variations in lighting . The project video shown here did not demonstrate much variation in lighting so the algorithm was successful, yet, It does not works as well in worse cases.
