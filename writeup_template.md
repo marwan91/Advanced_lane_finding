@@ -24,7 +24,7 @@ The goals / steps of this project are the following:
 [image2]: ./reference_imges/undistorted_lanes.png "Road Undistorted"
 [image3]: ./examples/binary_combo_example.jpg "Binary Example"
 [image4]: ./reference_images/warped_lanes.png "Warp Example"
-[image5]: ./reference_images/plot.png "Fit Visual"
+[image5]: ./reference_images/plotted_lines.png "Fit Visual"
 [image6]: ./reference_images/lane_highlight.png "Output"
 [video1]: ./test_videos_output/outvid.mp4 "Video"
 [video2]: ./test_videos_output/outvid4.mp4 "Video"
