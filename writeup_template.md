@@ -19,13 +19,15 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
+[image1]: ./reference_images/original.png "Original"
+[image8]: ./reference_images/undistorted.png "Undistorted"
+[image2]: ./reference_imges/undistorted_lanes.png "Road Undistorted"
 [image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
+[image4]: ./reference_images/warped_lanes.png "Warp Example"
+[image5]: ./reference_images/lane_highlight.png "Fit Visual"
 [image6]: ./examples/example_output.jpg "Output"
-[video1]: ./project_video.mp4 "Video"
+[video1]: ./test_videos_output/outvid.mp4 "Video"
+[video2]: ./test_videos_output/outvid4.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
@@ -50,6 +52,7 @@ I start by preparing "object points", which will be the (x, y, z) coordinates of
 I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 
 ![alt text][image1]
+![alt text][image8]
 
 ### Pipeline (single images)
 
