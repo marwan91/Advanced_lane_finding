@@ -27,6 +27,9 @@ The goals / steps of this project are the following:
 [image6]: ./reference_images/lane_highlight.png "Output"
 [video1]: ./test_videos_output/outvid.mp4 "Video"
 [video2]: ./test_videos_output/outvid4.mp4 "Video"
+[image10]: ./measurement_images/lane_lengt.png "length"
+[image11]: ./measurement_images/lane_length.png "length"
+[image12]: ./measurement_images/lane_length.png "length"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
@@ -92,6 +95,17 @@ I used search windows to identify points along both left and right lane lines. a
 
 I did this in the 7th code cell in "image_pipeline.ipynb" . I calculated the radius of curvature for both left and right lanes and defined the curvature of the lane as the average of both left and rigt line curvatures.
 I also used sanity check by verifying that both curvatures are approximately parallel.
+
+I measured the averages length of the dashed lane lines in pixels and found it to be 77 pixels:
+
+![alt text][image10]
+![alt text][image11]
+![alt text][image12]
+
+Then I set the dashed lane line length to be 3.66 meters according to the state of California traffic markings manual:
+http://www.dot.ca.gov/trafficops/camutcd/docs/TMChapter6.pdf
+
+Thus I was able to find a relation between pixels and meters and used that relation to convert image coordinates to world coordinates.
 
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
