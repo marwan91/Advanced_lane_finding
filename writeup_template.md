@@ -96,7 +96,7 @@ I used search windows to identify points along both left and right lane lines. a
 I did this in the 7th code cell in "image_pipeline.ipynb" . I calculated the radius of curvature for both left and right lanes and defined the curvature of the lane as the average of both left and rigt line curvatures.
 I also used sanity check by verifying that both curvatures are approximately parallel.
 
-I measured the averages length of the dashed lane lines in pixels and found it to be 77 pixels:
+I measured the average length of the dashed lane lines in pixels and found it to be 77 pixels:
 
 ![alt text][image10]
 ![alt text][image11]
