@@ -27,9 +27,9 @@ The goals / steps of this project are the following:
 [image6]: ./reference_images/lane_highlight.png "Output"
 [video1]: ./test_videos_output/outvid.mp4 "Video"
 [video2]: ./test_videos_output/outvid4.mp4 "Video"
-[image10]: ./measurement_images/lane_lengt.png "length"
-[image11]: ./measurement_images/lane_length.png "length"
-[image12]: ./measurement_images/lane_length.png "length"
+[image10]: ./measurement_images/lane_length.png "length"
+[image11]: ./measurement_images/lane_length2.png "length"
+[image12]: ./measurement_images/lane_length3.png "length"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
